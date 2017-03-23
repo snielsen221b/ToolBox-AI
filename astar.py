@@ -167,10 +167,10 @@ class Cell():
         return self.g_cost + self.h_cost
 
     def draw(self):
-        COST_TO_DRAW = ''
+        # COST_TO_DRAW = ''
         # COST_TO_DRAW = self.g_cost
         # COST_TO_DRAW = self.h_cost
-        # COST_TO_DRAW = self.f_cost
+        COST_TO_DRAW = self.f_cost
         line_width = 2
         rect = pygame.Rect(self.coordinates, self.dimensions)
         pygame.draw.rect(self.draw_screen, self.color, rect, line_width)
@@ -204,6 +204,26 @@ class Paul(Actor):
         for i, coord in enumerate(all_adj):
             if(in_bounds[i]):
                 costs.append(1 + self.world.get_terrain_cost(coord))
+                open_adj.append(coord)
+
+        # Costs for diagonals
+        # directions that define diagonals
+        diag_directions = [(1, 1), (-1, 1), (1, -1), (-1, -1)]
+        # define diagonal coordinates
+        all_diag = [self.world._add_coords(coords, d) for d in diag_directions]
+        in_bounds = [self.is_valid(c) for c in all_diag]
+        for i, coord in enumerate(all_diag):
+            if(in_bounds[i]):
+                costs.append(3 + self.world.get_terrain_cost(coord))
+                open_adj.append(coord)
+
+        # Cost for jumps
+        jump_directions = [(2, 0), (0, 2), (-2, 0), (0, -2)]
+        all_jumps = [self.world._add_coords(coords, d) for d in jump_directions]
+        in_bounds = [self.is_valid(c) for c in all_jumps]
+        for i, coord in enumerate(all_jumps):
+            if(in_bounds[i]):
+                costs.append(8 + self.world.get_terrain_cost(coord))
                 open_adj.append(coord)
         return open_adj, costs
 

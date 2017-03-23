@@ -1,0 +1,11 @@
+Cost:
+g_cost -> how many moves it takes to get from the start to that tile
+h_cost -> distance from tile to the cake
+f_cost -> the sum of the g_cost and the h_cost
+
+
+diagonals: Paul takes a diagonal path because all the others are blocked,
+therefore this is the shortest possible path
+
+hops: Even though the cost is 8, Paul jumps to reach the cake because it is the
+only path he can take.
