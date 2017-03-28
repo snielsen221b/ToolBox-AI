@@ -1,11 +1,16 @@
+***images are committed and labled
+
 Cost:
-g_cost -> how many moves it takes to get from the start to that tile
-h_cost -> distance from tile to the cake
-f_cost -> the sum of the g_cost and the h_cost
+g_cost -> how many moves it takes to get from the start to that tile [g_cost.png]
+h_cost -> distance from tile to the cake [h_cost.png]
+f_cost -> the sum of the g_cost and the h_cost [f_cost.png]
 
 
 diagonals: Paul takes a diagonal path because all the others are blocked,
-therefore this is the shortest possible path
+therefore this is the shortest possible path. [diagonals.png]
 
 hops: Even though the cost is 8, Paul jumps to reach the cake because it is the
-only path he can take.
+only path he can take. [jumps.png]
+
+Swamp: because there is lava in every other path, Paul want to go through the
+swamp, but the cost is higher than normal [Swamp.png]
